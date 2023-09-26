@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GroupChatDemo;
 using GroupChatDemo.Models;
+using GroupChatDemo.DTOs;
 
 namespace GroupChatDemo.Controllers
 {
@@ -84,12 +85,13 @@ namespace GroupChatDemo.Controllers
         // POST: api/GraphPlots
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<GraphPlot>> PostGraphPlot(GraphPlot graphPlot)
+        public async Task<ActionResult<GraphPlot>> PostGraphPlot(CreatePlotCommand command)
         {
           if (_context.GraphPlots == null)
           {
               return Problem("Entity set 'GroupChatDbContext.GraphPlots'  is null.");
           }
+          GraphPlot graphPlot = new GraphPlot { GroupId=command.GroupId, Name=command.Name };
             _context.GraphPlots.Add(graphPlot);
             await _context.SaveChangesAsync();
 

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GroupChatDemo;
 using GroupChatDemo.Models;
+using GroupChatDemo.DTOs;
 
 namespace GroupChatDemo.Controllers
 {
@@ -84,12 +79,13 @@ namespace GroupChatDemo.Controllers
         // POST: api/Messages
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Message>> PostMessage(Message message)
+        public async Task<ActionResult<Message>> PostMessage(CreateMessageCommand command)
         {
           if (_context.Messages == null)
           {
               return Problem("Entity set 'GroupChatDbContext.Messages'  is null.");
           }
+          Message message=new Message { ConversationId=command.ConversationId, UserId=command.UserId, Text=command.Text};
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GroupChatDemo;
 using GroupChatDemo.Models;
+using GroupChatDemo.DTOs;
 
 namespace GroupChatDemo.Controllers
 {
@@ -21,7 +16,6 @@ namespace GroupChatDemo.Controllers
             _context = context;
         }
 
-        // GET: api/Conversations
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Conversation>>> GetConversations()
         {
@@ -32,7 +26,6 @@ namespace GroupChatDemo.Controllers
             return await _context.Conversations.ToListAsync();
         }
 
-        // GET: api/Conversations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Conversation>> GetConversation(int id)
         {
@@ -50,16 +43,16 @@ namespace GroupChatDemo.Controllers
             return conversation;
         }
 
-        // PUT: api/Conversations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutConversation(int id, Conversation conversation)
+        public async Task<IActionResult> AddMembersToConversation(int id, IEnumerable<int> members)
         {
-            if (id != conversation.Id)
-            {
-                return BadRequest();
-            }
+            var conversation = await _context.Conversations.Where(x=>x.Id==id).Include(x=>x.Members).FirstOrDefaultAsync();
+            if(conversation == null)
+                return NotFound();
 
+            var users= await _context.Users.Where(x=>members.Contains(id)).ToListAsync();
+            users= users.ExceptBy(conversation.Members,x=>x).ToList();
+            conversation.Members.AddRange(users);
             _context.Entry(conversation).State = EntityState.Modified;
 
             try
@@ -81,22 +74,21 @@ namespace GroupChatDemo.Controllers
             return NoContent();
         }
 
-        // POST: api/Conversations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Conversation>> PostConversation(Conversation conversation)
+        public async Task<ActionResult<Conversation>> PostConversation(CreateConversationCommand command)
         {
           if (_context.Conversations == null)
           {
               return Problem("Entity set 'GroupChatDbContext.Conversations'  is null.");
           }
+          var members= await _context.Users.Where(x=>command.MembersId.Contains(x.Id)).ToListAsync();
+          Conversation conversation = new Conversation { GraphPlotId= command.GraphPlotId, XCoordinate=command.XCoordinate, YCoordinate=command.YCoordinate, Members=members };
             _context.Conversations.Add(conversation);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetConversation", new { id = conversation.Id }, conversation);
         }
 
-        // DELETE: api/Conversations/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteConversation(int id)
         {

@@ -9,14 +9,14 @@ namespace GroupChatDemo
     {
         public GroupChatDbContext(DbContextOptions<GroupChatDbContext> options):base(options)
         {
-            var dbCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
-            if (dbCreator != null)
-            {
-                if (!dbCreator.CanConnect())
-                    dbCreator.Create();
-                if (!dbCreator.HasTables())
-                    dbCreator.CreateTables();
-            }
+            //var dbCreator = Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator;
+            //if (dbCreator != null)
+            //{
+            //    if (!dbCreator.CanConnect())
+            //        dbCreator.Create();
+            //    if (!dbCreator.HasTables())
+            //        dbCreator.CreateTables();
+            //}
         }
         public DbSet<Group> Groups { get; set; }
         public DbSet<User> Users { get; set; }

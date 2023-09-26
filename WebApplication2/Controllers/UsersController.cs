@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GroupChatDemo;
 using GroupChatDemo.Models;
+using GroupChatDemo.DTOs;
 
 namespace GroupChatDemo.Controllers
 {
@@ -25,10 +26,10 @@ namespace GroupChatDemo.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
             return await _context.Users.ToListAsync();
         }
 
@@ -36,10 +37,10 @@ namespace GroupChatDemo.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
+            if (_context.Users == null)
+            {
+                return NotFound();
+            }
             var user = await _context.Users.FindAsync(id);
 
             if (user == null)
@@ -50,16 +51,17 @@ namespace GroupChatDemo.Controllers
             return user;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> JoinConversation(int id, int conversationId)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+            var user = await _context.Users.FindAsync(id);
+            if(user == null)
+                return NotFound("User not found");  
+            var conversation = await _context.Conversations.FindAsync(conversationId);
+            if (conversation == null)
+                return NotFound("Conversation not found.");
 
+            conversation.Members.Add(user);
             _context.Entry(user).State = EntityState.Modified;
 
             try
@@ -80,16 +82,14 @@ namespace GroupChatDemo.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser(CreateUserCommand command)
         {
           if (_context.Users == null)
           {
               return Problem("Entity set 'GroupChatDbContext.Users'  is null.");
           }
+          User user=new User { Name= command.Name };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 

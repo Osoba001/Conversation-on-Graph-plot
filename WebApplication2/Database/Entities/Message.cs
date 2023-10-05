@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GroupChatDemo.Models
+namespace GroupChatDemo.Database.Entities
 {
     public class Message
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public required string Text { get; set; }
         public bool IsEdited { get; set; }
-        public DateTime CreatedTime { get; set; }= DateTime.Now;
-        public required int UserId { get; set; }
+        public DateTime CreatedTime { get; set; } = DateTime.Now;
+        public required Guid UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public User Sender { get; set; }
-        public required int ConversationId { get; set; }
+        public required Guid ConversationId { get; set; }
         [ForeignKey(nameof(ConversationId))]
         public Conversation Conversation { get; set; }
     }

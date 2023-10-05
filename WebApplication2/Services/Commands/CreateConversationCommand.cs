@@ -1,10 +1,11 @@
-﻿namespace GroupChatDemo.DTOs
+﻿namespace GroupChatDemo.Services.Commands
 {
     public class CreateConversationCommand
     {
         public required double XCoordinate { get; set; }
         public required double YCoordinate { get; set; }
-        public required int GraphPlotId { get; set; }
-        public List<int> MembersId { get; set; } = new();
+        public required Guid GraphPlotId { get; set; }
+        public List<Guid> MembersId { get; set; } = new();
+
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace GroupChatDemo.Models
+﻿namespace GroupChatDemo.Database.Entities
 {
     public class User
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public required string Name { get; set; }
         public List<Conversation> Conversions { get; set; } = new();
     }

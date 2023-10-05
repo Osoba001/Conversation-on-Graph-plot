@@ -1,4 +1,4 @@
-﻿namespace GroupChatDemo.DTOs
+﻿namespace GroupChatDemo.Services.Commands
 {
     public class CreateUserCommand
     {

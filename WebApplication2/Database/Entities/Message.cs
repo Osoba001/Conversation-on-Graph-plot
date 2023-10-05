@@ -2,7 +2,7 @@
 
 namespace GroupChatDemo.Database.Entities
 {
-    public class Message
+    internal class Message
     {
         public Guid Id { get; set; }
         public required string Text { get; set; }

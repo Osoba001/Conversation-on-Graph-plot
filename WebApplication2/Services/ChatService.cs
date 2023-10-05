@@ -40,11 +40,10 @@ namespace GroupChatDemo.Services
         {
             return new ActionResponse
             {
-                PayLoad = await _dbContext.Users.Include(u => u.Conversions).Select(u => new
+                PayLoad = await _dbContext.Users.Select(u => new
                 {
                     u.Name,
                     u.Id,
-                    u.Conversions
                 }).ToListAsync(),
             };
         }
@@ -107,8 +106,6 @@ namespace GroupChatDemo.Services
             _dbContext.Messages.Add(message);
             await Complete();
 
-
-
             var msg = new
             {
                 message.Id,
@@ -128,7 +125,6 @@ namespace GroupChatDemo.Services
             var conversation = new Conversation
             {
                 GraphPlotId = command.GraphPlotId,
-                Members = members,
                 XCoordinate = command.XCoordinate,
                 YCoordinate = command.YCoordinate,
             };
@@ -147,7 +143,11 @@ namespace GroupChatDemo.Services
                 return new ActionResponse("No conversation found with the given id.", ResponseType.NotFound);
 
             var users= await _dbContext.Users.Where(u=>command.UserIds.Contains(u.Id)).ToListAsync();
-            conversation.Members.AddRange(users);
+            foreach (var id in command.UserIds)
+            {
+                var member=new ConversationMember { ConversationId = command.ConversationId, MemberId=id };
+                _dbContext.ConversationMembers.Add(member);
+            }
             return await Complete();
         }
 
@@ -157,10 +157,10 @@ namespace GroupChatDemo.Services
             if (conversation == null)
                 return new ActionResponse("No conversation found with the given id.", ResponseType.NotFound);
 
-            var users = await _dbContext.Users.Where(u => command.UserIds.Contains(u.Id)).ToListAsync();
+            var users = await _dbContext.ConversationMembers.Where(u => command.UserIds.Contains(u.MemberId) && u.ConversationId==command.ConversationId).ToListAsync();
             foreach (var user in users)
             {
-                conversation.Members.Remove(user);
+                _dbContext.ConversationMembers.Remove(user);
             }
             return await Complete();
         }

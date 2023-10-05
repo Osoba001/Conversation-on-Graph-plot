@@ -2,7 +2,7 @@
 
 namespace GroupChatDemo.Hubs
 {
-    public class ChatHub : Hub
+    internal class ChatHub : Hub
     {
         public async Task JoinGroup(string groupName)
         {

@@ -1,0 +1,18 @@
+﻿<Window x:Class="ChatDemo.wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatDemo.wpf"
+        mc:Ignorable="d"
+        Title="Chat Application" Height="350" Width="500">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBox x:Name="GroupNameTextBox" Margin="0,0,0,10"/>
+            <Button Content="Join Group" Click="JoinGroupButton_Click" Margin="0,0,0,10"/>
+            <Button Content="Leave Group" Click="LeaveGroupButton_Click" Margin="0,0,0,10"/>
+            <TextBox x:Name="MessageTextBox" Margin="0,0,0,10"/>
+            <Button Content="Send Message" Click="SendMessageButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

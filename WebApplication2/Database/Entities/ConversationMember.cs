@@ -7,11 +7,9 @@ namespace GroupChatDemo.Database.Entities
     internal class ConversationMember
     {
         public required Guid ConversationId { get; set; }
-        [ForeignKey(nameof(ConversationId))]
         public Conversation Conversation { get; set; }
         public required Guid MemberId { get; set; }
-        [ForeignKey(nameof(MemberId))]
-        public User Members { get; set; }
+        public User Member { get; set; }
     }
 
     internal class ConversationMemberEntityConfig : IEntityTypeConfiguration<ConversationMember>
@@ -20,6 +18,7 @@ namespace GroupChatDemo.Database.Entities
         {
             builder.HasNoKey();
             builder.HasIndex(x => new { x.MemberId, x.ConversationId }).IsUnique();
+            builder.HasOne(x=>x.Member).WithMany().HasForeignKey(x => x.MemberId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

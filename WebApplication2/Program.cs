@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddSqlServer<GroupChatDbContext>("Data Source=.;Initial Catalog=GroupChatDemo1;Integrated Security=True; Encrypt=False");
-builder.Services.AddScoped<ChatServices>();
+builder.Services.AddSqlServer<GroupChatDbContext>("Data Source=.;Initial Catalog=GroupChatDemo;Integrated Security=True; Encrypt=False");
+builder.Services.AddScoped<IChatServices, ChatServices>();
 builder.Services.AddScoped<ChatHub>();
 builder.Services.AddSignalR();
 builder.Services.AddEndpointsApiExplorer();

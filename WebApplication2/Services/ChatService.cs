@@ -177,7 +177,7 @@ namespace GroupChatDemo.Services
 
                 return new ActionResponse { Exception = ex };
             }
-            return new ActionResponse { PayLoad = affectedRow };
+            return new ActionResponse { PayLoad = affectedRow +"records effected."};
         }
     }
 }

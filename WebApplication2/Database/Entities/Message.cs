@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GroupChatDemo.Database.Entities
 {
@@ -14,5 +16,12 @@ namespace GroupChatDemo.Database.Entities
         public required Guid ConversationId { get; set; }
         [ForeignKey(nameof(ConversationId))]
         public Conversation Conversation { get; set; }
+    }
+    internal class MessageEntityConfiguratation : IEntityTypeConfiguration<Message>
+    {
+        public void Configure(EntityTypeBuilder<Message> builder)
+        {
+            builder.HasOne(x => x.Sender).WithMany().HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
+        }
     }
 }

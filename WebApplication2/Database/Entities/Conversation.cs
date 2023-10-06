@@ -9,6 +9,6 @@ namespace GroupChatDemo.Database.Entities
         public required double YCoordinate { get; set; }
         public required Guid GraphPlotId { get; set; }
         [ForeignKey(nameof(GraphPlotId))]
-        public GraphPlot GraphPlot { get; set; }
+        public Plot GraphPlot { get; set; }
     }
 }

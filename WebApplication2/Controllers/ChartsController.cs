@@ -39,9 +39,6 @@ namespace GroupChatDemo.Controllers
         [HttpPut("remove-user-from-conversation")]
         public async Task<IActionResult> RemoveUserFromCoversation([FromBody] RemoveUsersFromCoversationCommand command) => ActionResponse(await _chatServices.RemoveUsersFromConversation(command));
 
-        [HttpPost("message")]
-        public async Task<IActionResult> SendMessage([FromBody] CreateMessageCommand command)=> ActionResponse(await _chatServices.SendMessage(command));
-
         [HttpGet("message/{conversationId}")]
         public async Task<IActionResult> FetchMessage(Guid conversationId) => ActionResponse(await _chatServices.FetchMessages(conversationId));
 

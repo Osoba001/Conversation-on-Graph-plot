@@ -2,7 +2,7 @@
 
 namespace GroupChatDemo.Database.Entities
 {
-    internal class GraphPlot
+    internal class Plot
     {
         public Guid Id { get; set; }
         public required string Name { get; set; }

@@ -9,15 +9,13 @@ namespace GroupChatDemo.Services
     internal class ChatServices : IChatServices
     {
         private readonly GroupChatDbContext _dbContext;
-        private readonly ChatHub _ChatHub;
-        public ChatServices(GroupChatDbContext dbContext, ChatHub chatHub)
+        public ChatServices(GroupChatDbContext dbContext)
         {
             _dbContext = dbContext;
-            _ChatHub = chatHub;
         }
         public async Task<ActionResponse> CreatePlote(CreatePlotCommand command)
         {
-            var plot = new GraphPlot
+            var plot = new Plot
             {
                 Name = command.Name,
                 PlotInitiatorId = command.PlotInitiatorId
@@ -104,19 +102,7 @@ namespace GroupChatDemo.Services
                 Text = command.Text,
             };
             _dbContext.Messages.Add(message);
-            await Complete();
-
-            var msg = new
-            {
-                message.Id,
-                message.CreatedTime,
-                message.IsEdited,
-                message.Text,
-                command.ConversationId,
-                command.SenderName,
-            };
-            await _ChatHub.SendMessageToGroup(command.ConversationId.ToString(), msg);
-            return new ActionResponse { PayLoad = message.Id };
+           return await Complete();
         }
 
         public async Task<ActionResponse> StartConversation(CreateConversationCommand command)

@@ -16,7 +16,6 @@ public class ChatClient
 
         _connection.On<object>("ReceiveMessage", message =>
         {
-            // Handle received messages here
             Console.WriteLine($"Received message: {message}");
         });
     }

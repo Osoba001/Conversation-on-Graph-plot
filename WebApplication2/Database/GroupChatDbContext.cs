@@ -27,7 +27,7 @@ namespace GroupChatDemo.Database
         public DbSet<User> Users { get; set; }
         public DbSet<Conversation> Conversation { get; set; }
         public DbSet<Message> Messages { get; set; }
-        public DbSet<GraphPlot> Plots { get; set; }
+        public DbSet<Plot> Plots { get; set; }
         public DbSet<ConversationMember> ConversationMembers { get; set; }
     }
 }

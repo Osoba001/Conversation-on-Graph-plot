@@ -67,7 +67,6 @@ public class ChatClient
         }
         catch (Exception ex)
         {
-            // Handle SendMessageToGroup invocation failure
             Console.WriteLine($"Error sending message to group: {ex}");
         }
     }

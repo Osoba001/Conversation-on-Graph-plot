@@ -16,7 +16,6 @@ public class ChatClient
         _connection.Closed += async (error) =>
         {
             Console.WriteLine($"Connection closed: {error}");
-            // Try to reconnect when the connection is closed
             await Task.Delay(new Random().Next(0, 5) * 1000);
             await _connection.StartAsync();
         };
@@ -32,7 +31,6 @@ public class ChatClient
         }
         catch (Exception ex)
         {
-            // Handle connection start failure
             Console.WriteLine($"Error starting connection: {ex}");
         }
     }
@@ -45,7 +43,6 @@ public class ChatClient
         }
         catch (Exception ex)
         {
-            // Handle JoinGroup invocation failure
             Console.WriteLine($"Error joining group: {ex}");
         }
     }
@@ -58,7 +55,6 @@ public class ChatClient
         }
         catch (Exception ex)
         {
-            // Handle LeaveGroup invocation failure
             Console.WriteLine($"Error leaving group: {ex}");
         }
     }

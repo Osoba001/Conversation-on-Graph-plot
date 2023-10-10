@@ -50,8 +50,16 @@ namespace ChatDemo.wpf
         {
             string groupName = GroupNameTextBox.Text;
             string message = MessageTextBox.Text;
-            await _chatClient.SendMessageToGroupAsync(groupName, message);
+            var msg= new CreateMessageCommand {Text = message};
+            await _chatClient.SendMessageToGroupAsync(groupName, msg);
         }
+    }
+    public class CreateMessageCommand
+    {
+        public required string Text { get; set; }
+        public Guid SendId { get; set; }
+        public Guid ConversationId { get; set; }
+        public string SenderName { get; set; } = "kelly";
     }
 
 }

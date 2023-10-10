@@ -25,8 +25,17 @@ namespace GroupChatDemo.Hubs
 
         public async Task SendMessageToGroup(string groupName, CreateMessageCommand message)
         {
-            await Clients.Group(groupName).SendAsync("ReceiveMessage", message);
-            _ = _chatServices.SendMessage(message);
+            try
+            {
+                await Clients.Group(groupName).SendAsync("ReceiveMessage", message);
+                //_ = _chatServices.SendMessage(message);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details for debugging
+                Console.WriteLine($"Error in SendMessageToGroup: {ex.Message}");
+                throw; // Rethrow the exception to propagate it further if needed
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SFMnc+DToNslcQOjkM2FYt1f7IG880pNKG4EbL6EdmhKve15cmAKHOPMsHaKxqnrwnT9bZtTBR0DFGPI+g8VCQ==",
+  "dgSpecHash": "4rAI40GIyCqCh9XDTm/mzzE2Cqt/syXrZ5vbn572E3c2DohxcPf4q99aVVhqPzqg6MVPiKj8FIHMkMD1W7fdUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
+  "projectFilePath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kelly.osoba\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.0-rc.1.23421.29\\microsoft.aspnetcore.connections.abstractions.8.0.0-rc.1.23421.29.nupkg.sha512",
     "C:\\Users\\kelly.osoba\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\8.0.0-rc.1.23421.29\\microsoft.aspnetcore.http.connections.client.8.0.0-rc.1.23421.29.nupkg.sha512",

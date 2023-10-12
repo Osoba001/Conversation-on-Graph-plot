@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WcnRGFmkMiP/QEdf+fGYO+2Dd8F3AIU+ZMdjrgVznKlKJMosQwmNnYkvaDFfVxSnrUfiaiOW3HfSQkNRpU3aMA==",
+  "dgSpecHash": "Ya001rEPYTgYGunBq3rpjiFcOiWdRY/Ea5pNk4lIb1M4xxIpfeF/j0eN5O5EIiSH8vqRjTyuGrtrXLuxFjnn5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\GroupChatDemo.csproj",
+  "projectFilePath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\GroupChatDemo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kelly.osoba\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\kelly.osoba\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

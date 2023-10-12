@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\GroupChatDemo.csproj": {}
+    "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\GroupChatDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\GroupChatDemo.csproj": {
+    "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\GroupChatDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\GroupChatDemo.csproj",
+        "projectUniqueName": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\GroupChatDemo.csproj",
         "projectName": "GroupChatDemo",
-        "projectPath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\GroupChatDemo.csproj",
+        "projectPath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\GroupChatDemo.csproj",
         "packagesPath": "C:\\Users\\kelly.osoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\WebApplication2\\obj\\",
+        "outputPath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\WebApplication2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kelly.osoba\\AppData\\Roaming\\NuGet\\NuGet.Config",

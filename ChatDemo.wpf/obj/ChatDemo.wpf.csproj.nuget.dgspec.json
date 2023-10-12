@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\ChatDemo.wpf.csproj": {}
+    "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\ChatDemo.wpf.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\ChatDemo.wpf.csproj": {
+    "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\ChatDemo.wpf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
+        "projectUniqueName": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
         "projectName": "ChatDemo.wpf",
-        "projectPath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
+        "projectPath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\ChatDemo.wpf.csproj",
         "packagesPath": "C:\\Users\\kelly.osoba\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kelly.osoba\\source\\repos\\ChatDemo\\ChatDemo.wpf\\obj\\",
+        "outputPath": "C:\\Users\\kelly.osoba\\Desktop\\APPs\\Conversation-on-Graph-plot\\ChatDemo.wpf\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kelly.osoba\\AppData\\Roaming\\NuGet\\NuGet.Config",

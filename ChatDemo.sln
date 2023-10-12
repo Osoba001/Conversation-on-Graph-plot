@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupChatDemo", "WebApplication2\GroupChatDemo.csproj", "{BA688A19-C881-4384-94FB-60C7FEA39337}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatDemo.wpf", "ChatDemo.wpf\ChatDemo.wpf.csproj", "{E7CF44DA-2FA2-406E-93E6-65224F2B5776}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA688A19-C881-4384-94FB-60C7FEA39337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA688A19-C881-4384-94FB-60C7FEA39337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA688A19-C881-4384-94FB-60C7FEA39337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA688A19-C881-4384-94FB-60C7FEA39337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7CF44DA-2FA2-406E-93E6-65224F2B5776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CF44DA-2FA2-406E-93E6-65224F2B5776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7CF44DA-2FA2-406E-93E6-65224F2B5776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7CF44DA-2FA2-406E-93E6-65224F2B5776}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

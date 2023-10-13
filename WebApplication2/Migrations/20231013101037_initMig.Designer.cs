@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupChatDemo.Migrations
 {
     [DbContext(typeof(GroupChatDbContext))]
-    [Migration("20231006100634_initialMigration")]
-    partial class initialMigration
+    [Migration("20231013101037_initMig")]
+    partial class initMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,38 +49,25 @@ namespace GroupChatDemo.Migrations
 
             modelBuilder.Entity("GroupChatDemo.Database.Entities.ConversationMember", b =>
                 {
-                    b.Property<Guid>("ConversationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("MemberId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("ConversationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MemberId", "ConversationId");
+
                     b.HasIndex("ConversationId");
 
-                    b.HasIndex("MemberId", "ConversationId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("ConversationMembers");
-                });
-
-            modelBuilder.Entity("GroupChatDemo.Database.Entities.GraphPlot", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("PlotInitiatorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlotInitiatorId");
-
-                    b.ToTable("Plots");
                 });
 
             modelBuilder.Entity("GroupChatDemo.Database.Entities.Message", b =>
@@ -114,6 +101,26 @@ namespace GroupChatDemo.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("GroupChatDemo.Database.Entities.Plot", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PlotInitiatorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlotInitiatorId");
+
+                    b.ToTable("Plots");
+                });
+
             modelBuilder.Entity("GroupChatDemo.Database.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -131,7 +138,7 @@ namespace GroupChatDemo.Migrations
 
             modelBuilder.Entity("GroupChatDemo.Database.Entities.Conversation", b =>
                 {
-                    b.HasOne("GroupChatDemo.Database.Entities.GraphPlot", "GraphPlot")
+                    b.HasOne("GroupChatDemo.Database.Entities.Plot", "GraphPlot")
                         .WithMany()
                         .HasForeignKey("GraphPlotId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -143,7 +150,7 @@ namespace GroupChatDemo.Migrations
             modelBuilder.Entity("GroupChatDemo.Database.Entities.ConversationMember", b =>
                 {
                     b.HasOne("GroupChatDemo.Database.Entities.Conversation", "Conversation")
-                        .WithMany()
+                        .WithMany("ConversationMembers")
                         .HasForeignKey("ConversationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -154,20 +161,13 @@ namespace GroupChatDemo.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("GroupChatDemo.Database.Entities.User", null)
+                        .WithMany("ConversationMembers")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Conversation");
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("GroupChatDemo.Database.Entities.GraphPlot", b =>
-                {
-                    b.HasOne("GroupChatDemo.Database.Entities.User", "PlotInitiator")
-                        .WithMany()
-                        .HasForeignKey("PlotInitiatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PlotInitiator");
                 });
 
             modelBuilder.Entity("GroupChatDemo.Database.Entities.Message", b =>
@@ -187,6 +187,27 @@ namespace GroupChatDemo.Migrations
                     b.Navigation("Conversation");
 
                     b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("GroupChatDemo.Database.Entities.Plot", b =>
+                {
+                    b.HasOne("GroupChatDemo.Database.Entities.User", "PlotInitiator")
+                        .WithMany()
+                        .HasForeignKey("PlotInitiatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlotInitiator");
+                });
+
+            modelBuilder.Entity("GroupChatDemo.Database.Entities.Conversation", b =>
+                {
+                    b.Navigation("ConversationMembers");
+                });
+
+            modelBuilder.Entity("GroupChatDemo.Database.Entities.User", b =>
+                {
+                    b.Navigation("ConversationMembers");
                 });
 #pragma warning restore 612, 618
         }

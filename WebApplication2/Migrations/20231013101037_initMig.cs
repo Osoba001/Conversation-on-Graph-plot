@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GroupChatDemo.Migrations
 {
     /// <inheritdoc />
-    public partial class initialMigration : Migration
+    public partial class initMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,10 +67,13 @@ namespace GroupChatDemo.Migrations
                 columns: table => new
                 {
                     ConversationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    MemberId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    MemberId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_ConversationMembers", x => new { x.MemberId, x.ConversationId });
                     table.ForeignKey(
                         name: "FK_ConversationMembers_Conversation_ConversationId",
                         column: x => x.ConversationId,
@@ -80,6 +83,11 @@ namespace GroupChatDemo.Migrations
                     table.ForeignKey(
                         name: "FK_ConversationMembers_Users_MemberId",
                         column: x => x.MemberId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ConversationMembers_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -122,10 +130,9 @@ namespace GroupChatDemo.Migrations
                 column: "ConversationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConversationMembers_MemberId_ConversationId",
+                name: "IX_ConversationMembers_UserId",
                 table: "ConversationMembers",
-                columns: new[] { "MemberId", "ConversationId" },
-                unique: true);
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_ConversationId",

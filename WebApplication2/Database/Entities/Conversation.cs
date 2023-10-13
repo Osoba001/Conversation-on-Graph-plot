@@ -10,5 +10,6 @@ namespace GroupChatDemo.Database.Entities
         public required Guid GraphPlotId { get; set; }
         [ForeignKey(nameof(GraphPlotId))]
         public Plot GraphPlot { get; set; }
+        public List<ConversationMember> ConversationMembers { get; set; } = new();
     }
 }
